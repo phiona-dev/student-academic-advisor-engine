@@ -1,0 +1,41 @@
+{
+    "facts": [
+        "GPA Above 3.5",
+        "GPA Between 3.0 and 3.49",
+        "GPA Below 3.0",
+        "Attendance Above 80%",
+        "Attendance Below 80%",
+        "No Disciplinary Cases",
+        "Has Disciplinary Cases",
+        "Complete Prerequisite Courses",
+        "Has Outstanding Fees",
+        "No outstanding fees"
+    ],
+    "rules": [
+        {
+            "id": "scholarship",
+            "if": ["GPA > 3.5", "Attendance > 80%", "No Disciplinary Cases"],
+            "then": "Eligible for Scholarship"
+        },
+        {
+            "id": "graduation",
+            "if": ["GPA > 3.0", "Completed Prerequisite Courses", "No Outstanding fees"],
+            "then": "Eligible for Graduation"
+        },
+        {
+            "id": "probation",
+            "if": ["GPA < 3.0"],
+            "then": "Academic Probation"
+        },
+        {
+            "id": "registration_block",
+            "if": ["Has Outstanding fees"],
+            "then": "Registration Blocked"
+        },
+        {
+            "id": "deans_list",
+            "if": ["GPA > 3.5", "Attendance > 80%"],
+            "then": "Dean's List Candidate"
+        }
+    ]
+}
