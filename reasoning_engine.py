@@ -50,7 +50,7 @@ if __name__ == "__main__":
     print("REASONING ENGINE TEST")
     
     
-    #Test
+    #Test case 1: High performing student
     print("\nTest Student:")
     print("GPA = 3.8, Attendance = 90%, No disciplinary cases")
     print("Completer prerequisites, No outstanding fees")
@@ -60,4 +60,20 @@ if __name__ == "__main__":
     print("\nOutput:")
     for conclusion in result:
         print(f"{conclusion}")
+        
+    print("\n" + "="*40)
     
+    #Test case 2: Probation case
+    print("\nTest2: GPA=2.5, Attendance 70%, No disciplinary, Prerequisites done, No fees")
+    result2 = evaluate_student(2.5, 70, False, True, False)
+    print("Output:")
+    for conclusion in result2:
+        print(f"{conclusion}")
+    
+    
+    # Test Case 3: Student with fees
+    print("\nTest 3: GPA=3.2, Attendance=85%, No disciplinary, Prereqs done, HAS fees")
+    result3 = evaluate_student(3.2, 85, False, True, True)
+    print("Output:")
+    for conclusion in result3:
+        print(f"{conclusion}")
