@@ -77,3 +77,22 @@ if __name__ == "__main__":
     print("Output:")
     for conclusion in result3:
         print(f"{conclusion}")
+        
+    #allow user to input for testing
+    print("\n" + "="*40)
+    print("\nEnter your own student info for evaluation:")
+    print("="*40)
+    
+    gpa_input = float(input("Enter GPA: "))
+    attendance_input = float(input("Enter Attendance %: "))
+    disciplinary_input = input("Any disciplinary cases? (yes/no): ").strip().lower() == "yes"
+    prerequisites_input = input("Completed prerequisites? (yes/no): ").strip().lower() == "yes"
+    fees_input = input("Any outstanding fees? (yes/no): ").strip().lower() == "yes"
+    
+    result = evaluate_student(gpa_input, attendance_input, disciplinary_input, prerequisites_input, fees_input)
+    print("\nCONCLUSIONS:")
+    if result:
+        for conclusion in result:
+            print(f"{conclusion}")
+    else:
+        print("No rules triggered for this student.")
