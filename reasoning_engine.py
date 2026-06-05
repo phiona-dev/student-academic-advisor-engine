@@ -35,7 +35,7 @@ def evaluate_student(gpa, attendance, disciplinary, prerequisites, fees):
         
         elif rule["id"] == "registration_block":
             if has_fees:
-                conclusions.append("Registration blocked") 
+                conclusions.append("Registration Blocked") 
         
         
         elif rule["id"] == "deans_list":
@@ -44,41 +44,80 @@ def evaluate_student(gpa, attendance, disciplinary, prerequisites, fees):
                 
     return conclusions
 
-#test the reasoning engine
+def forward_chaining():
+    """Implements forward chaining inference"""
+    print("FORWARD CHAINING INFERENCE")
+    print("="*60)
+    
+    #student 1
+    print("\nStudent 1:")
+    print("="*30)
+    
+    print("\n Facts Provided:")
+    print("- GPA = 3.8")
+    print("- Attendance = 90%")
+    print("- No Disciplinary Cases")
+    print("- Completed Prerequisites course")
+    print("- No Outstanding Fees")
+    
+    print("\nRules Triggered:")
+    print("   • Scholarship Rule: IF GPA > 3.5 AND Attendance > 80% AND No Disciplinary Cases")
+    print("   • Graduation Rule: IF GPA > 3.0 AND Completed Prerequisite Courses AND No Outstanding Fees")
+    print("   • Dean's List Rule: IF GPA > 3.5 AND Attendance > 80%")
+    
+    result1 = evaluate_student(3.8, 90, False, True, False)
+    
+    print("\n Final Conclusions:")
+    for conclusion in result1:
+        print(f"   • {conclusion}")
 
-if __name__ == "__main__":
-    print("REASONING ENGINE TEST")
+#student 2
+    print("\n" + "="*60)
+    print("\nStudent 2:")
+    print("="*30)
     
     
-    #Test case 1: High performing student
-    print("\nTest Student:")
-    print("GPA = 3.8, Attendance = 90%, No disciplinary cases")
-    print("Completer prerequisites, No outstanding fees")
+    print("\n Facts Provided:")
+    print("- GPA = 2.5")
+    print("- Attendance = 70%")
+    print("- No Disciplinary Cases")
+    print("- Completed Prerequisites course")
+    print("- No Outstanding Fees")
     
-    result = evaluate_student(3.8, 90, False, True, False)
     
-    print("\nOutput:")
-    for conclusion in result:
-        print(f"{conclusion}")
-        
-    print("\n" + "="*40)
+    print("\nRules Triggered:")
+    print("   • Probation Rule: IF GPA < 3.0")
     
-    #Test case 2: Probation case
-    print("\nTest2: GPA=2.5, Attendance 70%, No disciplinary, Prerequisites done, No fees")
     result2 = evaluate_student(2.5, 70, False, True, False)
-    print("Output:")
+    
+    print("\n Final Conclusions:")
     for conclusion in result2:
-        print(f"{conclusion}")
-    
-    
-    # Test Case 3: Student with fees
-    print("\nTest 3: GPA=3.2, Attendance=85%, No disciplinary, Prereqs done, HAS fees")
-    result3 = evaluate_student(3.2, 85, False, True, True)
-    print("Output:")
-    for conclusion in result3:
-        print(f"{conclusion}")
+        print(f"   • {conclusion}")
         
-    #allow user to input for testing
+    #student 3
+    print("\n" + "="*60)
+    print("\nStudent 3:")
+    print("="*30)
+    
+    print("\n Facts Provided:")
+    print("- GPA = 3.2")
+    print("- Attendance = 85%")
+    print("- No Disciplinary Cases")
+    print("- Completed Prerequisites course")
+    print("- Has Outstanding Fees")
+    
+    print("\nRules Triggered:")
+    print("   • Registration Block Rule: IF Has Outstanding Fees")
+    
+    result3 = evaluate_student(3.2, 85, False, True, True)
+    print("\n Final Conclusions:")
+    for conclusion in result3:
+        print(f"   • {conclusion}")
+        
+def main():
+    forward_chaining()
+    
+     #allow user to input for testing
     print("\n" + "="*40)
     print("\nEnter your own student info for evaluation:")
     print("="*40)
@@ -95,4 +134,9 @@ if __name__ == "__main__":
         for conclusion in result:
             print(f"{conclusion}")
     else:
-        print("No rules triggered for this student.")
+        print("No rules triggered for this student.") 
+
+#test the reasoning engine
+
+if __name__ == "__main__":
+    main()
